@@ -8,6 +8,6 @@
 
 ![Roles](screenshots/screencapture-roles.png)
 
-![Prmission](screenshots/screencapture-permission.png)
+![Permissions](screenshots/screencapture-permissions.png)
 
 ![Backup](screenshots/screencapture-backup.png)
