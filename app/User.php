@@ -47,8 +47,8 @@ class User extends Authenticatable
      */
     public function isSuperAdmin()
     {
-        return in_array($this->email, [
-            'you@email.com'
-        ]);
+        $emails = env('EMAILS_SUPPER_ADMIN');
+        $emails = explode(',', $emails);
+        return in_array($this->email, $emails);
     }
 }
