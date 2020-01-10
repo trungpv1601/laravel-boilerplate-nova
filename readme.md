@@ -2,7 +2,9 @@
 
 ## 1. Laravel Nova Packages
 
-## 2. Screenshots
+## 2. Setup
+
+## 3. Screenshots
 
 ![Dashboard](screenshots/screencapture-dashboard.png)
 
