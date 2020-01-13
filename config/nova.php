@@ -6,7 +6,6 @@ use Laravel\Nova\Http\Middleware\BootTools;
 use Laravel\Nova\Http\Middleware\DispatchServingNovaEvent;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Nova App Name
@@ -18,7 +17,7 @@ return [
     |
     */
 
-    'name' => 'Laravel Boilerplate Project',
+    'name' => 'Spy Amazon',
 
     /*
     |--------------------------------------------------------------------------
@@ -75,7 +74,7 @@ return [
         Authenticate::class,
         DispatchServingNovaEvent::class,
         BootTools::class,
-        Authorize::class,
+        Authorize::class
     ],
 
     /*
@@ -89,6 +88,5 @@ return [
     |
     */
 
-    'pagination' => 'simple',
-
+    'pagination' => 'simple'
 ];

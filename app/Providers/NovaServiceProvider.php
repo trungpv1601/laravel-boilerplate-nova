@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Nova\Metrics\CrawlProducts;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersPerDay;
 use App\Nova\Metrics\UsersPerPlan;
@@ -59,8 +60,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new NewUsers,
-            new UsersPerDay,
+            new NewUsers(),
+            new UsersPerDay(),
+            new CrawlProducts()
             // new UsersPerPlan,
             // new Help,
         ];
@@ -84,9 +86,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            (new \Eminiarts\NovaPermissions\NovaPermissions())->canSee(function ($request) {
-                return $request->user()->isSuperAdmin();
-            }),
+            (new \Eminiarts\NovaPermissions\NovaPermissions())->canSee(
+                function ($request) {
+                    return $request->user()->isSuperAdmin();
+                }
+            ),
             (new \Spatie\BackupTool\BackupTool())->canSee(function ($request) {
                 return $request->user()->isSuperAdmin();
             }),
@@ -96,9 +100,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             (new \PhpJunior\NovaLogViewer\Tool())->canSee(function ($request) {
                 return $request->user()->isSuperAdmin();
             }),
-            (new \Guratr\CommandRunner\CommandRunner())->canSee(function ($request) {
+            (new \Guratr\CommandRunner\CommandRunner())->canSee(function (
+                $request
+            ) {
                 return $request->user()->isSuperAdmin();
-            }),
+            })
         ];
     }
 

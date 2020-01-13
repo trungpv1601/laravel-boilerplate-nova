@@ -33,7 +33,7 @@ class NewUsers extends Value
             'TODAY' => 'Today',
             'MTD' => 'Month To Date',
             'QTD' => 'Quarter To Date',
-            'YTD' => 'Year To Date',
+            'YTD' => 'Year To Date'
         ];
     }
 
@@ -44,7 +44,7 @@ class NewUsers extends Value
      */
     public function cacheFor()
     {
-        // return now()->addMinutes(5);
+        return now()->addMinutes(5);
     }
 
     /**

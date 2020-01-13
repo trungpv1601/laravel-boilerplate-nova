@@ -2,11 +2,11 @@
 
 namespace App\Nova\Metrics;
 
-use App\User;
+use App\Product;
 use Illuminate\Http\Request;
-use Laravel\Nova\Metrics\Trend;
+use Laravel\Nova\Metrics\Value;
 
-class UsersPerDay extends Trend
+class CrawlProducts extends Value
 {
     /**
      * Calculate the value of the metric.
@@ -16,9 +16,7 @@ class UsersPerDay extends Trend
      */
     public function calculate(Request $request)
     {
-        return $this->countByDays($request, User::class)
-            ->showLatestValue()
-            ->format('0,0');
+        return $this->count($request, Product::where('is_crawled', true));
     }
 
     /**
@@ -31,7 +29,11 @@ class UsersPerDay extends Trend
         return [
             30 => '30 Days',
             60 => '60 Days',
-            90 => '90 Days'
+            365 => '365 Days',
+            'TODAY' => 'Today',
+            'MTD' => 'Month To Date',
+            'QTD' => 'Quarter To Date',
+            'YTD' => 'Year To Date'
         ];
     }
 
@@ -52,6 +54,6 @@ class UsersPerDay extends Trend
      */
     public function uriKey()
     {
-        return 'users-per-day';
+        return 'crawl-products';
     }
 }

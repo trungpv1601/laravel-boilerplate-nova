@@ -15,12 +15,14 @@ class RolesAndPermissionsSeeder extends Seeder
     public function run()
     {
         // Reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[
+            \Spatie\Permission\PermissionRegistrar::class
+        ]->forgetCachedPermissions();
 
         $collection = collect([
             'users',
             'roles',
-            'permissions',
+            'permissions'
             // 'teams',
             // ... // List all your Models you want to have Permissions for.
         ]);
@@ -28,11 +30,23 @@ class RolesAndPermissionsSeeder extends Seeder
         $collection->each(function ($item, $key) {
             // create permissions for each collection item
             Permission::create(['group' => $item, 'name' => 'view ' . $item]);
-            Permission::create(['group' => $item, 'name' => 'view own ' . $item]);
+            Permission::create([
+                'group' => $item,
+                'name' => 'view own ' . $item
+            ]);
             Permission::create(['group' => $item, 'name' => 'manage ' . $item]);
-            Permission::create(['group' => $item, 'name' => 'manage own ' . $item]);
-            Permission::create(['group' => $item, 'name' => 'restore ' . $item]);
-            Permission::create(['group' => $item, 'name' => 'forceDelete ' . $item]);
+            Permission::create([
+                'group' => $item,
+                'name' => 'manage own ' . $item
+            ]);
+            Permission::create([
+                'group' => $item,
+                'name' => 'restore ' . $item
+            ]);
+            Permission::create([
+                'group' => $item,
+                'name' => 'forceDelete ' . $item
+            ]);
         });
 
         // Create Administrator User

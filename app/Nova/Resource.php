@@ -7,6 +7,8 @@ use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
+    public static $defaultSort = ['id' => 'asc'];
+
     /**
      * Build an "index" query for the given resource.
      *
@@ -16,6 +18,13 @@ abstract class Resource extends NovaResource
      */
     public static function indexQuery(NovaRequest $request, $query)
     {
+        if (static::$defaultSort && empty($request->get('orderBy'))) {
+            $query->getQuery()->orders = [];
+            foreach (static::$defaultSort as $field => $order) {
+                $query->orderBy($field, $order);
+            }
+        }
+
         return $query;
     }
 
