@@ -16,7 +16,9 @@ class CrawlProducts extends Value
      */
     public function calculate(Request $request)
     {
-        return $this->count($request, Product::where('is_crawled', true));
+        return $this->count($request, Product::class)
+            ->showLatestValue()
+            ->format('0,0');
     }
 
     /**

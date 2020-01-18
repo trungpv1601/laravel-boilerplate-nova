@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('sales_rank')->nullable();
-            $table->string('date_listed')->nullable();
+            $table->text('date_listed')->nullable();
             $table->string('ratings')->nullable();
             $table->text('keywords')->nullable();
             $table->string('price')->nullable();
